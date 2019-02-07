@@ -1,0 +1,30 @@
+<div id="pergaminhos">					
+	<h3>Pergaminhos</h3>
+	
+	<ul>
+		<%for(i = 0; i<result.length; i++){%>
+			
+			<% 
+			var acao = "";
+			switch(result[i].acao) {
+				case "1" : acao = "coletar recursos"; break;
+				case "2" : acao = "inforcar aldeão"; break;
+				case "3" : acao = "ensinar história"; break;
+				case "4" : acao = "ensinar magía"; break;
+
+			}
+			var date = new Date();
+
+			var milieSecondsAtuais =  date.getTime();
+			var milieSecondsFinais =  result[i].fimAcao;
+			 
+			var segundosRestantes = (milieSecondsFinais - milieSecondsAtuais)/1000;
+			%>
+
+			<li>
+				<%=result[i].quantidade %> <%=acao%> - <small>restam <span class="segundos"><%=segundosRestantes %></span> segundos</small>
+				<a href="/revogarAcao?_id=<%=result[i]._id %>">Revogar Acao</a>
+			</li>
+		<% } %>
+	</ul>
+</div>
